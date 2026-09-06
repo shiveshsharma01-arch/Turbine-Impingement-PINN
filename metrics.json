@@ -1,0 +1,32 @@
+{
+  "project": "Axisymmetric Turbine Impingement Cooling - CFD + PINN",
+  "date": "2026-09-06",
+  "CFD_baseline": {
+    "solver": "ANSYS Fluent, steady RANS k-omega SST",
+    "D_jet_m": 0.002,
+    "U_jet_m_s": 116.0,
+    "T_jet_K": 700.0,
+    "T_wall_K": 1100.0,
+    "dT_K": 400.0,
+    "H_over_D": 4.0,
+    "domain_m": 0.02,
+    "Re_nominal": 10000,
+    "Re_effective_hot_air": 3700,
+    "n_field_points": 3665
+  },
+  "PINN": {
+    "architecture": "Fourier-feature MLP 2->96x4->3 (sigma=1.5, ~47k params)",
+    "training": "50% sparse stratified data + PDE residual (autograd) + wall heat-flux assimilation",
+    "anti_overfit": "train/val split, L2 weight decay, LR scheduler, gradient clipping"
+  },
+  "results": {
+    "T_MAE_K": 38.86,
+    "T_RMSE_K": 62.64,
+    "T_rel_err_pct": 9.71,
+    "u_MAE_m_s": 11.95,
+    "v_MAE_m_s": 1.36,
+    "Nu_peak_CFD": 22.3,
+    "Nu_peak_PINN": 16.6,
+    "Nu_peak_error_pct": 25.5
+  }
+}
