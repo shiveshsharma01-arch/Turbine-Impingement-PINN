@@ -498,7 +498,7 @@ Sparse CFD observations
         ↓
 Fourierfeature PINN
         ↓
-Automaticdifferentiation physics loss
+Automatic differentiation physics loss
         ↓
 Wall heatflux assimilation
         ↓
